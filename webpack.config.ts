@@ -8,7 +8,7 @@ const config: Configuration = {
     devtool: "inline-source-map",
     output: {
         path: path.resolve(__dirname, "dist"),
-        filename: "pubsub.js",
+        filename: "index.js",
         library: "pubsub",
         libraryTarget: "umd",
         umdNamedDefine: true,

@@ -8,4 +8,5 @@ export default {
     transformIgnorePatterns: ["/node_modules/"],
     preset: "ts-jest",
     testEnvironment: "node",
+    modulePathIgnorePatterns: ["<rootDir>/__tests__/pubSub.typings.test.ts"],
 };

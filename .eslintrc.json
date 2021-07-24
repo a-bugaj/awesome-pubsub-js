@@ -13,7 +13,6 @@
     "plugins": ["@typescript-eslint"],
     "rules": {
         "no-console": "error",
-        "@typescript-eslint/no-explicit-any": "error",
         "@typescript-eslint/no-var-requires": "error",
         "@typescript-eslint/no-non-null-assertion": "error",
         "@typescript-eslint/explicit-function-return-type": ["error"],

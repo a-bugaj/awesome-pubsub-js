@@ -1,8 +1,7 @@
 {
     "compilerOptions": {
-        "target": "ESNEXT",
+        "target": "ES3",
         "module": "commonjs",
-        "declaration": true,
         "sourceMap": true,
         "strict": true,
         "noImplicitAny": true,
@@ -21,6 +20,9 @@
         "noPropertyAccessFromIndexSignature": true,
         "esModuleInterop": true,
         "allowSyntheticDefaultImports": true,
+        "declaration": true,
+        "declarationMap": true,
+        "declarationDir": "dist",
         "baseUrl": ".",
         "outDir": "./dist"
     },
