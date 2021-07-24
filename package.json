@@ -1,7 +1,7 @@
 {
   "name": "awesome-pubsub-js",
   "version": "1.0.0",
-  "description": "Dependency free publish/subscribe library",
+  "description": "JavaScript implementation of the Publish/Subscribe pattern with TypeScript support.",
   "main": "./dist/index.js",
   "scripts": {
     "build": "webpack --config webpack.config.ts --bail --progress",
