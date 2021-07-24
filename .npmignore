@@ -1,0 +1,11 @@
+node_modules
+package-lock.json
+coverage
+*.tgz
+lib
+.eslintrc.json
+.prettierrc
+jest.config.ts
+tsconfig.json
+webpack.config.ts
+__tests__
