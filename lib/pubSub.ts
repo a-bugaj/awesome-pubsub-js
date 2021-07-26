@@ -31,20 +31,31 @@ export class PubSub {
         return hashKey;
     };
 
-    unsubscribe = (hashKey: HashKey): void => {
-        if (!hashKey) return;
+    unsubscribe = (hashKey: HashKey): boolean => {
+        if (!hashKey) return false;
+
+        const isExists = this.subscribers.find(
+            ({ hashKey: subHashKey }) => subHashKey === hashKey
+        );
+
+        if (!isExists) return false;
 
         const events = this.subscribers.filter((subscriber) => subscriber.hashKey !== hashKey);
-
         this.subscribers = events;
+
+        return true;
     };
 
-    publish = <E extends string, D = unknown>(event: E, data?: D): void => {
+    publish = <E extends string, D = unknown>(event: E, data?: D): boolean => {
         const events = this.subscribers.filter(({ eventName }) => eventName === event);
+
+        if (events.length === 0) return false;
 
         events.forEach((event) => {
             event.callback(data);
         });
+
+        return true;
     };
 
     getAllSubscribers = (): Subscribers[] => this.subscribers;
