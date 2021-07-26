@@ -177,4 +177,18 @@ describe("PubSub -> Publish method", () => {
         expect(callback).toHaveBeenNthCalledWith(1, data);
         expect(callback).toHaveBeenNthCalledWith(2, []);
     });
+
+    it("Should publish event with empty payload", () => {
+        // given
+        const event = "event.with.empty.payload";
+        const callback = jest.fn();
+        pubSub.subscribe(event, callback);
+
+        // when
+        pubSub.publish(event);
+
+        // then
+        expect(callback).toHaveBeenCalledTimes(1);
+        expect(callback).toHaveBeenCalledWith(undefined);
+    });
 });
