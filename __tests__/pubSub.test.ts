@@ -10,7 +10,7 @@ describe("PubSub -> Default Instance", () => {
         pubSub = PubSub();
     });
 
-    it("Should create pubSub instance with subscribers field set to empty array", () => {
+    it("Should create an instance of pubsub with an empty subscription list", () => {
         expect(pubSub.getAllSubscribers()).toEqual([]);
     });
 });
@@ -22,7 +22,7 @@ describe("PubSub -> Subscribe Method", () => {
         pubSub = PubSub();
     });
 
-    it("Should add event to subscribers array with generated hash key and passed callback ", () => {
+    it("Should add event to the subscriptions list, with generated hash key and forwarded callback ", () => {
         // given
         const event = "random.event";
 
@@ -43,7 +43,7 @@ describe("PubSub -> Subscribe Method", () => {
         );
     });
 
-    it("Should call the subscribe method twice if someone subscribed to one event twice", () => {
+    it("Should call the subscribe method twice (when someone is subscribed x2 to specific event) after publishing a specific event", () => {
         // given
         const event = "my.event";
 
@@ -87,7 +87,7 @@ describe("PubSub -> Unsubscribe Method", () => {
         pubSub = PubSub();
     });
 
-    it("Should remove event from the subscribers array after unsubscribe", () => {
+    it("Should remove event from the subscribers array", () => {
         // given
         const event = "unsubscribe.event";
 
@@ -102,7 +102,7 @@ describe("PubSub -> Unsubscribe Method", () => {
         expect(eventsAfterUnsubscribe).toHaveLength(0);
     });
 
-    it("Should delete a specific event if there are two events with the same name in the subscribers array", () => {
+    it("Should delete a specific event if there are two events with the same name in the subscribers list", () => {
         // given
         const event = "random.event";
         const callback = jest.fn();
@@ -147,7 +147,7 @@ describe("PubSub -> Publish method", () => {
         pubSub = PubSub();
     });
 
-    it("Should publish event with passed data", () => {
+    it("Should publish event with payload", () => {
         // given
         const event = "random.event";
         const callback = jest.fn();
@@ -162,7 +162,7 @@ describe("PubSub -> Publish method", () => {
         expect(callback).toHaveBeenCalledWith(data);
     });
 
-    it("Should publish event twice when someone publishing the event twice", () => {
+    it("Should call callback from subscribe method (twice) after publishing the event twice.", () => {
         // given
         const event = "nice.event!";
         const callback = jest.fn();
