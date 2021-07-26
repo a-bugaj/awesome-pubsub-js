@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/ban-ts-comment */
 import PubSub, { PubSubInterface } from "../lib";
 
 // eslint-disable-next-line @typescript-eslint/no-empty-function
@@ -102,6 +103,54 @@ describe("PubSub -> Unsubscribe Method", () => {
         expect(eventsAfterUnsubscribe).toHaveLength(0);
     });
 
+    it("Should return false when a hashKey has not been passed", () => {
+        // given
+        const event = "unsubscribe.event";
+
+        // when
+        pubSub.subscribe(event, noop);
+        const eventsAfterSubscribe = pubSub.getAllSubscribers();
+        expect(eventsAfterSubscribe).toHaveLength(1);
+
+        // then
+        // @ts-ignore just for the tests
+        const output = pubSub.unsubscribe();
+        const eventsAfterUnsubscribe = pubSub.getAllSubscribers();
+
+        expect(output).toBe(false);
+        expect(eventsAfterUnsubscribe).toHaveLength(1);
+    });
+
+    it("Should return true when successfully unsubscribed", () => {
+        // given
+        const event = "unsubscribe.event";
+
+        // when
+        const hashKey = pubSub.subscribe(event, noop);
+
+        // then
+        const output = pubSub.unsubscribe(hashKey);
+        const eventsAfterUnsubscribe = pubSub.getAllSubscribers();
+
+        expect(output).toEqual(true);
+        expect(eventsAfterUnsubscribe).toHaveLength(0);
+    });
+
+    it("Should return false when someone pass a hashKey that does not exist in the subscription list", () => {
+        // given
+        const event = "unsubscribe.event";
+
+        // when
+        pubSub.subscribe(event, noop);
+
+        // then
+        const output = pubSub.unsubscribe("random-hash-key-that-not-exists");
+        const eventsAfterUnsubscribe = pubSub.getAllSubscribers();
+
+        expect(output).toEqual(false);
+        expect(eventsAfterUnsubscribe).toHaveLength(1);
+    });
+
     it("Should delete a specific event if there are two events with the same name in the subscribers list", () => {
         // given
         const event = "random.event";
@@ -160,6 +209,31 @@ describe("PubSub -> Publish method", () => {
         // then
         expect(callback).toHaveBeenCalledTimes(1);
         expect(callback).toHaveBeenCalledWith(data);
+    });
+
+    it("Should return false when no one is subscribed to the published event", () => {
+        // given
+        const event = "nice.event!";
+
+        // when
+        const output = pubSub.publish(event);
+
+        // then
+        expect(output).toEqual(false);
+    });
+
+    it("Should return true when the event was published successfully", () => {
+        // given
+        const event = "nice.event!";
+        const callback = jest.fn();
+        pubSub.subscribe(event, callback);
+
+        // when
+        const output = pubSub.publish(event);
+
+        // then
+        expect(output).toEqual(true);
+        expect(callback).toHaveBeenCalledTimes(1);
     });
 
     it("Should call callback from subscribe method (twice) after publishing the event twice.", () => {
