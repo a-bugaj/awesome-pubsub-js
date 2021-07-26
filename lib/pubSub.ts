@@ -1,6 +1,6 @@
 import { randomHashKeyGenerator, HashKey } from "./randomHashKeyGenerator";
 
-type Callback<D> = (data: D) => void;
+type Callback<D = unknown> = (data?: D) => void;
 
 interface Subscribers {
     eventName: string;
@@ -15,7 +15,10 @@ export class PubSub {
         this.subscribers = [];
     }
 
-    subscribe = <E extends string, D>(event: E, callback: Callback<D>): HashKey => {
+    subscribe = <E extends string, D = (data?: unknown) => void>(
+        event: E,
+        callback: Callback<D>
+    ): HashKey => {
         const hashKey = randomHashKeyGenerator();
 
         this.subscribers.push({
@@ -36,7 +39,7 @@ export class PubSub {
         this.subscribers = events;
     };
 
-    publish = <E extends string, D>(event: E, data: D): void => {
+    publish = <E extends string, D = unknown>(event: E, data?: D): void => {
         const events = this.subscribers.filter(({ eventName }) => eventName === event);
 
         events.forEach((event) => {
