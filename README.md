@@ -1,16 +1,25 @@
 # awesome-pubsub-js
 
+[![NPM](https://img.shields.io/npm/v/awesome-pubsub-js.svg)](https://www.npmjs.com/package/awesome-pubsub-js) [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
+
 JavaScript implementation of the Publish/Subscribe pattern with TypeScript support.
 
 # Install
 
 ### npm
 
-```sh
+```shell
 $ npm install awesome-pubsub-js
 ```
 
-### Example
+### yarn
+```shell
+$ yarn add awesome-pubsub-js
+```
+
+# A quick example
+
+Do you want to know more? Go to the [Documentation](#API) section
 
 ##### JavaScript:
 
@@ -27,46 +36,27 @@ pubSub.subscribe("event.example", (data) => {
 pubSub.publish("event.example", { name: "John", email: "john@gmail.com" });
 ```
 
-##### TypeScript:
+### API
+**List of all available methods:**
 
-```ts
-import PubSub from "awesome-pubsub-js";
+Each of the following methods takes one or two arguments
 
-const pubSub = PubSub();
+- Subscribe
 
-interface Data {
-    name: string;
-    age: number;
-}
 
-const data: Data = { name: "John", age: 40 };
+| Method name | Payload | Return value |
+| ------ | ------ | ------ |
+| subscribe | ```pubSub.subscribe("eventName", (data) => {});```| HashKey (string) - is needed for use in the 'unsubscribe' method |
+| unsubscribe | ```pubSub.unsubscribe('hashKey')``` <br /> hashKey (string) is always returned from the subscribe method | true - when the event has been successfully unsubscribed <br /> false - when the event does not exists | 
+| publish | ```pubSub.publish('eventName', any)``` <br /> any = literally anything you want to pass :) <br /> If you don't pass anything, the default value will be undefined | true - when the event has published successfully <br /> false - when the event has not been published (e.g. due to the lack of a registered subscriber) | 
+| getAllSubscribers |  - | returns the current subscription list |
 
-pubSub.subscribe<string, Data>("event.example", (data) => {
-    // data = { name: "John", age: 40 }
-    // ... your logic
-});
-pubSub.publish("event.example", data);
-
-// or with enum
-
-enum Event {
-    Example: "event.example"
-}
-
-pubSub.subscribe<Event, Data>(Event.Example, data => {
-    // data = { name: "John", age: 20 }
-    // ... your logic
-});
-pubSub.publish<Event, Data>(Event.Example, data);
-
-pubSub.subscribe<Event.Example, Data>(Event.Example, data => {});
-pubSub.publish<Event.Example>(Event.Example, data);
-```
-
-### Documentation
-
-TODO
 
 ### Roadmap:
 
-TODO
+- [x] subscribe and publish method
+- [x] unsubscribe method
+- [x] getAllSubscribers method
+- [ ] Wildcard support
+- [ ] Logger
+    
