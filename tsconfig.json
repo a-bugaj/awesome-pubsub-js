@@ -1,30 +1,30 @@
 {
     "compilerOptions": {
-        "target": "ES3",
-        "module": "commonjs",
+        "target": "esnext",
+        "module": "ESNext",
+        "useDefineForClassFields": true,
+        "lib": ["ES2020"],
+        "allowJs": true,
+        "skipLibCheck": true,
+        "esModuleInterop": true,
         "sourceMap": true,
+        "baseUrl": ".",
+        "outDir": "dist",
+        "resolveJsonModule": true,
+
+        /* Bundler mode */
+        "moduleResolution": "node",
+        "allowImportingTsExtensions": true,
+        "isolatedModules": true,
+        "moduleDetection": "force",
+        "noEmit": true,
+
+        /* Linting */
         "strict": true,
-        "noImplicitAny": true,
-        "strictNullChecks": true,
-        "strictFunctionTypes": true,
-        "strictBindCallApply": true,
-        "strictPropertyInitialization": true,
-        "noImplicitThis": true,
-        "alwaysStrict": true,
         "noUnusedLocals": true,
         "noUnusedParameters": true,
-        "noImplicitReturns": true,
         "noFallthroughCasesInSwitch": true,
-        "noUncheckedIndexedAccess": true,
-        "noImplicitOverride": true,
-        "noPropertyAccessFromIndexSignature": true,
-        "esModuleInterop": true,
-        "allowSyntheticDefaultImports": true,
-        "declaration": true,
-        "declarationMap": true,
-        "declarationDir": "dist",
-        "baseUrl": ".",
-        "outDir": "./dist"
+        "noImplicitAny": true
     },
     "include": ["./lib/**/*"],
     "exclude": ["./__tests__", "./webpack.config.ts"]
