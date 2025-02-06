@@ -1,21 +1,46 @@
 {
     "env": {
         "browser": true,
-        "es2021": true,
+        "es6": true,
         "node": true
     },
-    "extends": ["eslint:recommended", "plugin:@typescript-eslint/recommended"],
+    "extends": ["eslint:recommended", "plugin:@typescript-eslint/strict", "prettier"],
+    "plugins": ["@typescript-eslint"],
     "parser": "@typescript-eslint/parser",
     "parserOptions": {
-        "ecmaVersion": 12,
-        "sourceType": "module"
+        "ecmaVersion": "latest",
+        "sourceType": "module",
+        "project": ["./tsconfig.json"]
     },
-    "plugins": ["@typescript-eslint"],
     "rules": {
         "no-console": "error",
-        "@typescript-eslint/no-var-requires": "error",
-        "@typescript-eslint/no-non-null-assertion": "error",
-        "@typescript-eslint/explicit-function-return-type": ["error"],
-        "@typescript-eslint/ban-ts-comment": "error"
+        "@typescript-eslint/ban-ts-comment": "off",
+        "arrow-body-style": "off",
+        "no-param-reassign": [
+            "error",
+            {
+                "props": false
+            }
+        ],
+        "no-unused-vars": "off",
+        "@typescript-eslint/no-unused-vars": [
+            "error",
+            {
+                "varsIgnorePattern": "^_",
+                "argsIgnorePattern": "^_"
+            }
+        ],
+        "no-nested-ternary": "warn",
+        "@typescript-eslint/no-shadow": "off",
+        "@typescript-eslint/naming-convention": [
+            "error",
+            {
+                "selector": "enum",
+                "format": ["UPPER_CASE"]
+            }
+        ],
+        "no-useless-catch": "error",
+        "no-underscore-dangle": "off",
+        "@typescript-eslint/no-invalid-void-type": "off"
     }
 }
