@@ -1,6 +1,6 @@
 {
     "name": "awesome-pubsub-js",
-    "version": "1.2.0",
+    "version": "1.2.1",
     "description": "JavaScript implementation of the Publish/Subscribe pattern with TypeScript support.",
     "main": "dist/index.cjs.js",
     "types": "dist/index.d.ts",
@@ -13,7 +13,7 @@
     ],
     "scripts": {
         "build": "vite build",
-        "build:package": "npm run build && cp package.json ./dist && cp README.md ./dist && cd dist && npm publish",
+        "build:package": "npm run build && npm publish",
         "check-types": "tsc",
         "test": "jest --collectCoverage",
         "prettier": "prettier --check 'lib/**/*.ts' '__tests__/**/*.ts'",
