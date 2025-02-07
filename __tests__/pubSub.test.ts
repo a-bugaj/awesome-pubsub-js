@@ -1,14 +1,13 @@
-/* eslint-disable @typescript-eslint/ban-ts-comment */
-import PubSub, { PubSubInterface } from "../lib";
+import PubSub from "../lib";
 
 // eslint-disable-next-line @typescript-eslint/no-empty-function
 const noop = (): void => {};
 
 describe("PubSub -> Default Instance", () => {
-    let pubSub: PubSubInterface;
+    let pubSub: PubSub;
 
     beforeEach(() => {
-        pubSub = PubSub();
+        pubSub = new PubSub();
     });
 
     it("Should create an instance of pubsub with an empty subscription list", () => {
@@ -17,10 +16,10 @@ describe("PubSub -> Default Instance", () => {
 });
 
 describe("PubSub -> Subscribe Method", () => {
-    let pubSub: PubSubInterface;
+    let pubSub: PubSub;
 
     beforeEach(() => {
-        pubSub = PubSub();
+        pubSub = new PubSub();
     });
 
     it("Should add event to the subscriptions list, with generated hash key and forwarded callback ", () => {
@@ -82,10 +81,10 @@ describe("PubSub -> Subscribe Method", () => {
 });
 
 describe("PubSub -> Unsubscribe Method", () => {
-    let pubSub: PubSubInterface;
+    let pubSub: PubSub;
 
     beforeEach(() => {
-        pubSub = PubSub();
+        pubSub = new PubSub();
     });
 
     it("Should remove event from the subscribers array", () => {
@@ -186,14 +185,14 @@ describe("PubSub -> Unsubscribe Method", () => {
 });
 
 describe("PubSub -> Publish method", () => {
-    let pubSub: PubSubInterface;
+    let pubSub: PubSub;
     const data = {
         name: "John",
         age: 50,
     };
 
     beforeEach(() => {
-        pubSub = PubSub();
+        pubSub = new PubSub();
     });
 
     it("Should publish event with payload", () => {

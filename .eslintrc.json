@@ -32,13 +32,6 @@
         ],
         "no-nested-ternary": "warn",
         "@typescript-eslint/no-shadow": "off",
-        "@typescript-eslint/naming-convention": [
-            "error",
-            {
-                "selector": "enum",
-                "format": ["UPPER_CASE"]
-            }
-        ],
         "no-useless-catch": "error",
         "no-underscore-dangle": "off",
         "@typescript-eslint/no-invalid-void-type": "off"

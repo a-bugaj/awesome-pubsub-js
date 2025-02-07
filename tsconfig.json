@@ -25,7 +25,5 @@
         "noUnusedParameters": true,
         "noFallthroughCasesInSwitch": true,
         "noImplicitAny": true
-    },
-    "include": ["./lib/**/*"],
-    "exclude": ["./__tests__", "./webpack.config.ts"]
+    }
 }

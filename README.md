@@ -13,6 +13,7 @@ $ npm install awesome-pubsub-js
 ```
 
 ### yarn
+
 ```shell
 $ yarn add awesome-pubsub-js
 ```
@@ -26,7 +27,7 @@ Do you want to know more? Go to the [Documentation](#API) section
 ```js
 import PubSub from "awesome-pubsub-js";
 
-const pubSub = PubSub();
+const pubSub = new PubSub();
 
 pubSub.subscribe("event.example", (data) => {
     // data = { name: "John", email: "john@gmail.com" }
@@ -37,20 +38,19 @@ pubSub.publish("event.example", { name: "John", email: "john@gmail.com" });
 ```
 
 ### API
+
 **List of all available methods:**
 
 Each of the following methods takes one or two arguments
 
 - Subscribe
 
-
-| Method name | Payload | Return value |
-| ------ | ------ | ------ |
-| subscribe | ```pubSub.subscribe("eventName", (data) => {});```| HashKey (string) - is needed for use in the 'unsubscribe' method |
-| unsubscribe | ```pubSub.unsubscribe('hashKey')``` <br /> hashKey (string) is always returned from the subscribe method | true - when the event has been successfully unsubscribed <br /> false - when the event does not exists | 
-| publish | ```pubSub.publish('eventName', any)``` <br /> any = literally anything you want to pass :) <br /> If you don't pass anything, the default value will be undefined | true - when the event has published successfully <br /> false - when the event has not been published (e.g. due to the lack of a registered subscriber) | 
-| getAllSubscribers |  - | returns the current subscription list |
-
+| Method name       | Payload                                                                                                                                                       | Return value                                                                                                                                            |
+| ----------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| subscribe         | `pubSub.subscribe("eventName", (data) => {});`                                                                                                                | HashKey (string) - is needed for use in the 'unsubscribe' method                                                                                        |
+| unsubscribe       | `pubSub.unsubscribe('hashKey')` <br /> hashKey (string) is always returned from the subscribe method                                                          | true - when the event has been successfully unsubscribed <br /> false - when the event does not exists                                                  |
+| publish           | `pubSub.publish('eventName', any)` <br /> any = literally anything you want to pass :) <br /> If you don't pass anything, the default value will be undefined | true - when the event has published successfully <br /> false - when the event has not been published (e.g. due to the lack of a registered subscriber) |
+| getAllSubscribers | -                                                                                                                                                             | returns the current subscription list                                                                                                                   |
 
 ### Roadmap:
 
@@ -59,4 +59,3 @@ Each of the following methods takes one or two arguments
 - [x] getAllSubscribers method
 - [ ] Wildcard support
 - [ ] Logger
-    

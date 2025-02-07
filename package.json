@@ -1,6 +1,7 @@
 {
     "name": "awesome-pubsub-js",
-    "version": "1.2.1",
+    "version": "2.0.0",
+    "type": "module",
     "description": "JavaScript implementation of the Publish/Subscribe pattern with TypeScript support.",
     "main": "dist/index.cjs.js",
     "types": "dist/index.d.ts",
