@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import PubSub from "../lib";
 
 enum Event {
@@ -8,7 +9,7 @@ interface Data {
     name: string;
 }
 
-const pubSub = PubSub();
+const pubSub = new PubSub();
 
 // publish method
 pubSub.publish<Event, Data>(Event.Random, { name: "John" });
@@ -19,13 +20,9 @@ pubSub.publish("event.without.types", []);
 
 // subscribe method
 pubSub.subscribe<Event, Data>(Event.Random, (data) => {
-    data.name;
+    console.log(data.name);
 });
 
 pubSub.subscribe<Event>(Event.Random, () => {
     // empty payload
-});
-
-pubSub.subscribe<Event.Random, Data>(Event.Random, (data) => {
-    data.name;
 });

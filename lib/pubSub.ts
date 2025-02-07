@@ -5,6 +5,7 @@ type Callback<D = unknown> = (data?: D) => void;
 interface Subscribers {
     eventName: string;
     hashKey: HashKey;
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     callback: Callback<any>;
 }
 
@@ -15,9 +16,9 @@ export class PubSub {
         this.subscribers = [];
     }
 
-    subscribe = <E extends string, D = (data?: unknown) => void>(
+    subscribe = <E extends string, D = undefined>(
         event: E,
-        callback: Callback<D>
+        callback: (data: D extends undefined ? void : D) => void
     ): HashKey => {
         const hashKey = randomHashKeyGenerator();
 
